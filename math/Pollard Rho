@@ -1,0 +1,18 @@
+ull modmul(ull a,ull b,ull M) {
+	int ret=a*b-M*(ull)(1.L/M*a*b);
+    return ret+M*(ret<0)-M*(ret>=(int)M);
+}
+
+ull f(ull x,ull n){
+    return modmul(x,x,n)+1;
+}
+
+ull pollard_rho(ull n) {
+	ull x=0,y=0,t=30,prd=2,i=1,q;
+	while(t++%40 || __gcd(prd,n)==1) {
+		if(x==y) x=i++,y=f(x,n);
+		if ((q=modmul(prd,max(x,y)-min(x,y),n))) prd=q;
+		x=f(x,n),y=f(f(y,n),n);
+	}
+	return __gcd(prd, n);
+}
