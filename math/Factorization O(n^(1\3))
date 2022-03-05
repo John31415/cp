@@ -18,20 +18,12 @@ void fact(int x){
 }
 
 //main
-
-
-
 T=1,fact(n),T++,T>>=1,s=0;
 fill(arr,arr+10,0);
 while(T--){
     d=1,it=0;
     for(int i=0;i<vec.size();i++) d*=q(vec[i].f,arr[i]);
-    if(arr[it]+1>vec[it].s){
-        while(arr[it]+1>vec[it].s) arr[it++]=0;
-        arr[it]++;
-    }
-    else arr[it]++;
-    s+=(d*phi[d]);
-    if(d==n/d) continue;
-    d=n/d,s+=(d*phi[d]);
+    while(arr[it]+1>vec[it].s) arr[it++]=0;
+    arr[it]++;
+    //d
 }
