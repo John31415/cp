@@ -1,0 +1,5 @@
+int C[10000007];
+void sieve_bool(int n){
+    fill(C,C+n+1,false);
+    for(int i=2;i<=n;i++) if(!C[i]) for(int j=i+i;j<=n;j+=i) C[j]=true;
+}
