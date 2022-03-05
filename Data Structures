@@ -1,0 +1,24 @@
+int tree[10000007];
+void build(int node=1,int l=1,int r=n){
+    if(l==r) tree[node]=arr[l];
+    else{
+        int mid=(l+r)>>1;
+        build(2*node,l,mid),build(2*node+1,mid+1,r);
+        tree[node]=tree[node*2]+tree[node*2+1];
+    }
+}
+
+void update(int node,int l,int r,int x,int val){
+    if(l>x || r<x) return;
+    if(l==r) tree[node]=val;
+    int mid=(l+r)>>1;
+    update(node*2,l,mid,x,val),update(node*2+1,mid+1,r,x,val);
+    tree[node]=tree[node*2]+tree[node*2+1];
+}
+
+int query(int node,int l,int r,int x,int y){
+    if(r<x || l>y) return 0; 
+    if(l>=x && r<=y) return tree[node];
+    int mid=(l+r)>>1;
+    return query(2*node,l,mid,x,y)+query(2*node+1,mid+1,r,x,y);
+}
