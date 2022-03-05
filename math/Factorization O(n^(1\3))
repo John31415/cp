@@ -1,0 +1,37 @@
+
+int q(int a,int b){
+    if(b==0) return 1;
+    int aux=1;
+    while(b>1){
+        if(b&1) aux*=a;
+        a*=a,b>>=1;
+    }
+    return a*aux;
+}
+
+void fact(int x){
+    if(x<=1) return;
+    int a=1,y=x/C[x];
+    while(C[x]==C[y]) y/=C[y],a++;
+    fact(y);
+    vec.push_back({C[x],a}),T*=(a+1);
+}
+
+//main
+
+
+
+T=1,fact(n),T++,T>>=1,s=0;
+fill(arr,arr+10,0);
+while(T--){
+    d=1,it=0;
+    for(int i=0;i<vec.size();i++) d*=q(vec[i].f,arr[i]);
+    if(arr[it]+1>vec[it].s){
+        while(arr[it]+1>vec[it].s) arr[it++]=0;
+        arr[it]++;
+    }
+    else arr[it]++;
+    s+=(d*phi[d]);
+    if(d==n/d) continue;
+    d=n/d,s+=(d*phi[d]);
+}
